@@ -1,0 +1,35 @@
+# Compiled Python files
+*.pyc
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Ignore RubyMine IDE files
+.idea
+
+# Ignore Subversion files
+.svn
+
+# Ignore backup files
+*~
+
+docs/CHANGES.rst
+docs/install.rst
+docs/todo.rst
+herringfilec
+
+RefactorImports.egg-info
+
+build/
+dist/
+quality/
+reports/

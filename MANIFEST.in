@@ -1,0 +1,8 @@
+include *.rst
+include *.txt
+include MANIFEST.in
+recursive-include refactor_imports *.txt
+recursive-include refactor_imports *.js
+recursive-include refactor_imports *.html
+recursive-include refactor_imports *.css
+recursive-include tests *
