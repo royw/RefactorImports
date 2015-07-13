@@ -41,7 +41,10 @@ class RefactorImportsSettings(ApplicationSettings):
     }
 
     def __init__(self):
-        super(RefactorImportsSettings, self).__init__('RefactorImports', 'refactor_imports', ['RefactorImports'], self.HELP)
+        super(RefactorImportsSettings, self).__init__('RefactorImports',
+                                                      'refactor_imports',
+                                                      ['RefactorImports'],
+                                                      self.HELP)
 
     def _cli_options(self, parser):
         """

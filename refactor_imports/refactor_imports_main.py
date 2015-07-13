@@ -19,6 +19,9 @@ def hack_sys_path(debug=False):
     they are in the sys.path, then insert this directory's parent followed by this directory
     into the start of sys.path.
 
+    :param debug: print debugging info
+    :type debug: bool
+
     ::
 
         Example file structure:

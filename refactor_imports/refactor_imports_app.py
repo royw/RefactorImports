@@ -6,7 +6,6 @@ The RefactorImports application.
 from refactor_imports.utils.graceful_interrupt_handler import GracefulInterruptHandler
 from refactor_imports.utils.simple_logger import Logger, FileLogger
 from refactor_imports.code_analyzer import CodeAnalyzer
-from refactor_imports.utils.list_helper import unique_list
 
 __docformat__ = 'restructuredtext en'
 __all__ = ("RefactorImportsApp",)

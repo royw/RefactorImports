@@ -38,6 +38,7 @@ class RefactorImportsCLI(object):
                 error(str(ex))
                 exit(1)
 
+    # noinspection PyMethodMayBeStatic
     def report(self, results):
         """
 

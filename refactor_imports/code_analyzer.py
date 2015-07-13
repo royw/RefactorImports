@@ -1,5 +1,10 @@
+# coding=utf-8
+
+"""
+Analyzer for python source code import statements
+"""
+
 import os
-from pprint import pprint, pformat
 from refactor_imports.module_info import ModuleInfo
 from refactor_imports.utils.list_helper import unique_list
 
@@ -7,18 +12,38 @@ __author__ = 'roy'
 
 
 class CodeAnalyzer(object):
+    """
+    Give the top directory to start looking for python source files, perform various analysis on imports and symbols.
+
+    :param top_dir: top directory containing python source files (*.py)
+    :type top_dir: str
+    """
+
     def __init__(self, top_dir):
         self.top_dir = top_dir
         self.module_infos = None
 
     def exportables(self):
-        exportables = []
+        """
+        Finds the symbols in each module that are exportable (can be imported by another module) in all of
+        the python modules in the directory tree.
+
+        :return: list of exportable objects
+        :rtype: list(Exportable)
+        """
+        exportables_ = []
         module_infos = self.find_modules(self.top_dir)
         for info in module_infos:
-            exportables.extend(info.exportables)
-        return exportables
+            exportables_.extend(info.exportables)
+        return exportables_
 
     def calls(self):
+        """
+        Find the list of calls in each module.
+
+        :return: a dictionary keyed by module name with a list of call symbols in the module as the values
+        :rtype: dict(str,list(str))
+        """
         calls = {}
         module_infos = self.find_modules(self.top_dir)
         for info in module_infos:
@@ -27,6 +52,13 @@ class CodeAnalyzer(object):
 
     # noinspection PyMethodMayBeStatic
     def find_modules(self, top_dir):
+        """
+        Find information about each module in the given directory tree.
+
+        :param top_dir:
+        :return:
+        :rtype:
+        """
         if self.module_infos is not None:
             return self.module_infos
         module_infos = []
@@ -48,4 +80,3 @@ class CodeAnalyzer(object):
 
         self.module_infos = module_infos
         return module_infos
-
