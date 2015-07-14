@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Refactor imports in python source files.
 
@@ -16,12 +17,14 @@ Add the following to your *requirements.txt* files:
 
 """
 import os
+# noinspection PyUnresolvedReferences
 import re
 from pprint import pformat
 from sys import version, path
 
 # noinspection PyUnresolvedReferences
 from herring.herring_app import task, namespace, HerringFile, task_execute, verbose_mode, debug_mode
+# noinspection PyUnresolvedReferences
 from herringlib.simple_logger import info, Logger, debug
 
 # noinspection PyUnresolvedReferences
@@ -66,7 +69,7 @@ Project.metadata(
         'doc_python_version': '27',
 
         # python versions (defined in 'python_versions') to unit test with.  Defaults to 'wheel_python_versions'.
-        'test_python_versions': ('27'),
+        'test_python_versions': ('27',),
 
         # python versions (defined in 'python_versions') to run metrics with.  Defaults to 'wheel_python_versions'.
         'metrics_python_versions': '27',

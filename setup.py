@@ -1,4 +1,7 @@
-# from distutils.core import setup
+# coding=utf-8
+"""
+Setup for RefactorImports
+"""
 import os
 import re
 from setuptools import setup
@@ -26,6 +29,7 @@ def get_project_version():
     # trying __init__.py first
     try:
         file_name = os.path.join(os.getcwd(), 'refactor_imports', '__init__.py')
+        # noinspection PyArgumentEqualDefault
         with open(file_name, 'r') as inFile:
             for line in inFile.readlines():
                 match = re.match(VERSION_REGEX, line)
