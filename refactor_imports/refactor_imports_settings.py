@@ -3,7 +3,7 @@
 RefactorImportsSettings adds application specific information to the generic ApplicationSettings class.
 """
 import os
-from refactor_imports.utils.application_settings import ApplicationSettings
+from fullmonty.application_settings import ApplicationSettings
 
 __docformat__ = 'restructuredtext en'
 __all__ = ("RefactorImportsSettings",)
@@ -30,6 +30,7 @@ class RefactorImportsSettings(ApplicationSettings):
         'usages': 'List usages of package.module.* symbols',
         'imports': 'List the desired import lines for each module.',
         'dump': 'Dump AST tree for each module',
+        'trace': 'Trace imports for each module',
 
         'info_group': '',
         'version': "Show RefactorImports's version.",
@@ -46,12 +47,14 @@ class RefactorImportsSettings(ApplicationSettings):
                                                       ['RefactorImports'],
                                                       self.HELP)
 
-    def _cli_options(self, parser):
+    def _cli_options(self, parser, defaults):
         """
         Adds application specific arguments to the parser.
 
         :param parser: the argument parser with --conf_file already added.
         :type parser: argparse.ArgumentParser
+        :param defaults: the default dictionary usually loaded from a config file
+        :type defaults: dict(str,str)
         """
         options_group = parser.add_argument_group(title='Options', description=self._help['options_group'])
         options_group.add_argument('--top_dir', type=str, metavar='DIR', default=os.path.curdir,
@@ -60,6 +63,7 @@ class RefactorImportsSettings(ApplicationSettings):
         options_group.add_argument('--usages', action='store_true', help=self._help['usages'])
         options_group.add_argument('--imports', action='store_true', help=self._help['imports'])
         options_group.add_argument('--dump', action='store_true', help=self._help['dump'])
+        options_group.add_argument('--trace', action='store_true', help=self._help['trace'])
 
         info_group = parser.add_argument_group(title='Informational Commands', description=self._help['info_group'])
         info_group.add_argument('--version', dest='version', action='store_true', help=self._help['version'])
@@ -70,7 +74,7 @@ class RefactorImportsSettings(ApplicationSettings):
                                   help=self._help['verbosity'])
         output_group.add_argument('--logfile', type=str, metavar='FILE', help=self._help['logfile'])
 
-    def _cli_validate(self, settings):
+    def _cli_validate(self, settings, remaining_argv):
         """
         Verify we have required options for commands.
 

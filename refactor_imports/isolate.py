@@ -1,11 +1,15 @@
+# coding=utf-8
+
 """
 Facilitate running a code block in s separate process
 """
+
 __author__ = 'roy'
 
-class Isoloate(object):
+
+class Isolate(object):
     """
-    with Isoloate().fork as proc:
+    with Isolate().fork as proc:
         dosomething()
     """
 

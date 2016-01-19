@@ -12,6 +12,8 @@ Add the following to your *requirements.txt* files:
 * mako
 * pexpect
 * setuptools
+* fullmonty; python_version in "[python_versions]"
+* py-dictdiffer; python_version in "[python_versions]"
 
 # pycabehtml; python_version == "[metrics_python_versions]"
 

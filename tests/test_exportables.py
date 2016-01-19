@@ -1,11 +1,14 @@
+# coding=utf-8
+
 import ast
 import os
 from refactor_imports.code_analyzer import CodeAnalyzer
-from refactor_imports.utils.simple_logger import info
+from fullmonty.simple_logger import info
 
 __author__ = 'roy'
 
 top_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
 
 def test_importing_found_exportables():
     """
@@ -23,6 +26,7 @@ def test_importing_found_exportables():
         except Exception as ex:
             assert False, exportable.import_str + ' : ' + str(ex)
 
+
 def test_verify_import_bad_object_test():
     """This test verifies the negative case used in the test_importing_found_exportables() test"""
     import_str = 'from refactor_imports import DoesNotExist'
@@ -33,6 +37,7 @@ def test_verify_import_bad_object_test():
         assert False, import_str
     except Exception as ex:
         assert True, import_str + ' : ' + str(ex)
+
 
 def test_verify_import_bad_package_test():
     """This test verifies the negative case used in the test_importing_found_exportables() test"""

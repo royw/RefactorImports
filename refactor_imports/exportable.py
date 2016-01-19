@@ -5,7 +5,7 @@ Symbols in a module that other modules may import are referred to here as "Expor
 This is a wrapper for exportable symbols with basic comparison and conversions.
 """
 
-from refactor_imports.utils.comparable_mixin import ComparableMixin
+from fullmonty.comparable_mixin import ComparableMixin
 
 __author__ = 'roy'
 

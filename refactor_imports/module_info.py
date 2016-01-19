@@ -144,20 +144,26 @@ class ModuleInfo(object):
             """
             for alias in stmt.names:
                 if alias.name not in self.parent.import_modules:
-                    file_spec = imp.find_module(stmt.module)[1]
-                    print(file_spec)
-                    if os.path.isfile(file_spec):
-                        info = ModuleInfo(module_spec=alias.name, file_spec=file_spec)
-                        self.parent.import_modules[alias.name] = info
+                    try:
+                        file_spec = imp.find_module(stmt.module)[1]
+                        print(file_spec)
+                        if os.path.isfile(file_spec):
+                            info = ModuleInfo(module_spec=alias.name, file_spec=file_spec)
+                            self.parent.import_modules[alias.name] = info
+                    except (ImportError, AttributeError):
+                        pass
             self.continue_parsing(stmt)
 
         def visit_ImportFrom(self, stmt):
             if stmt.module not in self.parent.import_modules:
-                file_spec = imp.find_module(stmt.module)[1]
-                print(file_spec)
-                if os.path.isfile(file_spec):
-                    info = ModuleInfo(module_spec=stmt.module, file_spec=file_spec)
-                    self.parent.import_modules[stmt.module] = info
+                try:
+                    file_spec = imp.find_module(stmt.module)[1]
+                    print(file_spec)
+                    if os.path.isfile(file_spec):
+                        info = ModuleInfo(module_spec=stmt.module, file_spec=file_spec)
+                        self.parent.import_modules[stmt.module] = info
+                except ImportError:
+                    pass
             self.continue_parsing(stmt)
 
     # noinspection PyPep8Naming,PyDocstring

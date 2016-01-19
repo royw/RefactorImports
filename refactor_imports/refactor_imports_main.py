@@ -4,11 +4,12 @@
 This is the console entry point (from setup.py) for the RefactorImports application.
 
 """
-__docformat__ = 'restructuredtext en'
 
 import os
 import sys
-from pprint import pformat
+from pprint import *
+
+__docformat__ = 'restructuredtext en'
 
 
 def hack_sys_path(debug=False):
@@ -63,8 +64,8 @@ def hack_sys_path(debug=False):
 
 hack_sys_path()
 
-from refactor_imports.refactor_imports_app import RefactorImportsApp
-from refactor_imports.refactor_imports_cli import RefactorImportsCLI
+from refactor_imports.refactor_imports_app import *
+from refactor_imports.refactor_imports_cli import *
 
 __all__ = ('main',)
 

@@ -6,7 +6,7 @@ The command line interface for the RefactorImports application.
 __docformat__ = 'restructuredtext en'
 
 from refactor_imports.refactor_imports_settings import RefactorImportsSettings
-from refactor_imports.utils.simple_logger import error, info
+from fullmonty.simple_logger import error, info
 
 __all__ = ("ArgumentError", "RefactorImportsCLI")
 

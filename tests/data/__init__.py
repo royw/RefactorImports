@@ -1,7 +1,8 @@
 # coding=utf-8
 
 """
-Various utilities.
+Describe Me!
 """
+
 __docformat__ = 'restructuredtext en'
 __author__ = 'wrighroy'

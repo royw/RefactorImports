@@ -6,7 +6,7 @@ Analyzer for python source code import statements
 
 import os
 from refactor_imports.module_info import ModuleInfo
-from refactor_imports.utils.list_helper import unique_list
+from fullmonty.list_helper import unique_list
 
 __author__ = 'roy'
 
@@ -51,20 +51,24 @@ class CodeAnalyzer(object):
         return calls
 
     # noinspection PyMethodMayBeStatic
-    def find_modules(self, top_dir):
+    def find_modules(self, top_dir, start_dir=None):
         """
         Find information about each module in the given directory tree.
 
         :param top_dir:
+        :param start_dir:
         :return:
         :rtype:
         """
+        if start_dir is None:
+            start_dir = top_dir
+
         if self.module_infos is not None:
             return self.module_infos
         module_infos = []
-        if os.path.isdir(top_dir):
+        if os.path.isdir(start_dir):
             # package directory structure
-            for dir_name, subdir_list, file_list in os.walk(top_dir):
+            for dir_name, subdir_list, file_list in os.walk(start_dir):
                 # python packages must have a __init__.py file
 
                 if '__init__.py' in file_list:
@@ -73,9 +77,9 @@ class CodeAnalyzer(object):
                         module_spec = os.path.splitext(os.path.join(dir_path, file_name))[0].replace('/', '.')
                         file_spec = os.path.join(os.path.abspath(top_dir), dir_path, file_name)
                         module_infos.append(ModuleInfo(module_spec=module_spec, file_spec=file_spec))
-        elif os.path.isfile(top_dir):
+        elif os.path.isfile(start_dir):
             # stand-alone file
-            file_spec = os.path.abspath(top_dir)
+            file_spec = os.path.abspath(start_dir)
             module_infos.append(ModuleInfo(module_spec='', file_spec=file_spec))
 
         self.module_infos = module_infos
